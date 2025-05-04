@@ -1,0 +1,21 @@
+name: Generate schematic PDF for KiCad project
+description: Generates a PDF schematic for the provided `.kicad_sch` file
+
+branding:
+  icon: "file"
+  color: "yellow"
+
+inputs:
+  sch:
+    description: ".kicad_sch to generate files for"
+    required: true
+  output:
+    description: "Location to put generated schematic (should end in .pdf)"
+    required: true
+    default: "schematic.pdf"
+runs:
+  using: "docker"
+  image: "docker://ghcr.io/maartin0/kicad-sch-action:v1"
+  args:
+    - ${{ inputs.sch }}
+    - ${{ inputs.output }}
